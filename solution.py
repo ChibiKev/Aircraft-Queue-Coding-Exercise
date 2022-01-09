@@ -1,19 +1,82 @@
 class AircraftQueue:
   boot = False
   listOfAircraft = []
-  typeWeights = {
-    'Cargo': 0,
-    'Passenger': 2
-  }
   sizeWeights = {
     'Small': 0,
     'Large': 1
   }
+  typeWeights = {
+    'Cargo': len(sizeWeights) * 0,
+    'Passenger': len(sizeWeights) * 1
+  }
+  """
+  Cargo Small = 0
+  Cargo Large = 1
+  Passenger Small = 2
+  Passenger Large = 3
 
-  # Cargo Small = 0
-  # Cargo Large = 1
-  # Passenger Small = 2
-  # Passenger Large = 3
+  Cargo Small < Cargo Large < Passenger Small < Passenger Large
+
+  NOTE: To future programmers adding a different aircraft type or size:
+  Different Aircraft Type:
+  - Add the aircraft type to typeWeights.
+  - Include the appropriate weight for it. Higher weight has removal precedence.
+  Example:
+  typeWeights = {
+    'Cargo': len(sizeWeights) * 0,
+    'Passenger': len(sizeWeights) * 1
+    'Business Jet': len(sizeWeights) * 2
+  }
+  Cargo Small = 0
+  Cargo Large = 1
+  Passenger Small = 2
+  Passenger Large = 3
+  Business Jet Small = 4
+  Business Jet Large = 5
+
+  Cargo Small < Cargo Large < Passenger Small < Passenger Large < Business Jet Small < Business Jet Large
+
+  Different Aircraft Size:
+  - Add the aircraft size to sizeWeights.
+  - Include the appropriate weight for it. Higher weight has removal precedence.
+  Example:
+  sizeWeights = {
+    'Tiny': 0,
+    'Small': 1,
+    'Large': 2
+  }
+  Cargo Tiny = 0
+  Cargo Small = 1
+  Cargo Large = 2
+  Passenger Tiny = 3
+  Passenger Small = 4
+  Passenger Large = 5
+
+  Cargo Tiny < Cargo Small < Cargo Large < Passenger Tiny < Passenger Small < Passenger Large
+
+  Combined Example:
+  sizeWeights = {
+    'Tiny': 0,
+    'Small': 1,
+    'Large': 2
+  }
+  typeWeights = {
+    'Cargo': len(sizeWeights) * 0,
+    'Passenger': len(sizeWeights) * 1
+    'Business Jet': len(sizeWeights) * 2
+  }
+  Cargo Tiny = 0
+  Cargo Small = 1
+  Cargo Large = 2
+  Passenger Tiny = 3
+  Passenger Small = 4
+  Passenger Large = 5
+  Business Jet Tiny = 6
+  Business Jet Small = 7
+  Business Jet Large = 8
+
+  Cargo Tiny < Cargo Small < Cargo Large < Passenger Tiny < Passenger Small < Passenger Large < Business Jet Tiny < Business Jet Small < Business Jet Large
+  """
 
   def systemBoot(self):
     try:
