@@ -56,7 +56,15 @@ cd Aircraft-Queue-Coding-Exercise
 ```
 py soltion.py
 ```
+
+## Additional Information
+- Sections of Code:
+  - Lines 1 - 124 - AirQueue Class
+  - Lines 126 - 148 - Aircraft Class
+  - Lines 150 - 195 - Test Code Used To Implement An Aircraft Queue Manager As Efficiently As Possible
+- Feel free to change the test code to test out the application yourself.
 ## Moving Forward
-- Modification To Improve Dequeue's Efficiency and Scalability.
+- Modification To Improve Project's Efficiency and Scalability.
+- Seperate classes and code into different files for cleaner code.
 ## Ask Me About Anything
 If there are any questions, feel free to ask them [here](https://github.com/ChibiKev/Aircraft-Queue-Coding-Exercise/issues).
