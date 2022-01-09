@@ -1,4 +1,5 @@
 class AircraftQueue:
+  boot = False
   listOfAircraft = []
   typeWeights = {
     'Cargo': 0,
@@ -16,24 +17,29 @@ class AircraftQueue:
 
   def systemBoot(self):
     try:
-      print("System Starting")
+      self.boot = not self.boot
+      return print("System Booting..." if self.boot else "System Shutting Off...")
     except Exception as e:
-      print(e)
-      return
+      return print(e)
+      
   
   def enqueue(self, AC):
     try:
+      if not self.boot:
+        return print("System Not Booted")
+        
       return self.listOfAircraft.append(AC)
     except Exception as e:
-      print(e)
-      return
+      return print(e)
     
   def dequeue(self):
     try:
+      if not self.boot:
+        return print("System Not Booted")
+
       myAircraft = self.listOfAircraft
       if len(myAircraft) == 0:
-        print("Currently No Aircrafts")
-        return
+        return print("Currently No Aircrafts")
         
       removalIndex = 0
       maxWeight = 0
@@ -49,8 +55,7 @@ class AircraftQueue:
       self.listOfAircraft.pop(removalIndex)
       return removed
     except Exception as e:
-      print(e)
-      return
+      return print(e)
 
   def getList(self):
     return self.listOfAircraft
@@ -65,22 +70,19 @@ class Aircraft:
     try:
       return self.ACname
     except Exception as e:
-      print(e)
-      return
+      return print(e)
     
   def getType(self):
     try:
       return self.ACtype
     except Exception as e:
-      print(e)
-      return
+      return print(e)
   
   def getSize(self):
     try:
       return self.ACsize
     except Exception as e:
-      print(e)
-      return
+      return print(e)
 
 airport = AircraftQueue()
 airport.systemBoot()
