@@ -1,6 +1,19 @@
 class AircraftQueue:
   listOfAircraft = []
-  
+  typeWeights = {
+    'Cargo': 0,
+    'Passenger': 2
+  }
+  sizeWeights = {
+    'Small': 0,
+    'Large': 1
+  }
+
+  # Cargo Small = 0
+  # Cargo Large = 1
+  # Passenger Small = 2
+  # Passenger Large = 3
+
   def systemBoot(self):
     print("System Starting")
   
@@ -14,29 +27,14 @@ class AircraftQueue:
       return
       
     removalIndex = 0
-    removalType = ""
-    removalSize = ""
+    maxWeight = 0
     for index, aircraft in enumerate(myAircraft):
       currentType = aircraft.getType()
       currentSize = aircraft.getSize()
-      if currentType == "Passenger":
-        if currentSize == "Large":
-          removalIndex = index
-          break
-        elif currentSize == "Small" and removalType != "Passenger":
-          removalType = currentType
-          removalIndex = index
-      elif currentType == "Cargo":
-        if removalType == "Passenger":
-          continue
-        elif currentSize == "Large" and removalSize == "Small":
-          removalType = currentType
-          removalIndex = index
-          removalSize = currentSize
-        elif currentSize == "Small":
-          removalType = currentType
-          removalIndex = index
-          removalSize = currentSize
+      currentWeight = self.typeWeights[currentType] + self.sizeWeights[currentSize]
+      if currentWeight > maxWeight:
+        maxWeight = currentWeight
+        removalIndex = index
     
     removed = myAircraft[removalIndex]
     self.listOfAircraft.pop(removalIndex)
