@@ -54,7 +54,7 @@ cd Aircraft-Queue-Coding-Exercise
 ```
 3. Run The App:
 ```
-py soltion.py
+py solution.py
 ```
 
 ## Additional Information
